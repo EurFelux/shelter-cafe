@@ -1,0 +1,12 @@
+{
+  "home": {
+    "name": "Jiyuan Wang"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About"
+  },
+  "search": {
+    "placeholder": "Search"
+  }
+}
