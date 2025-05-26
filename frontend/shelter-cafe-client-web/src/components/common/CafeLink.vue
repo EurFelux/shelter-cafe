@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { RouterLink } from 'vue-router'
+
 defineOptions({ inheritAttrs: false })
 
-import { RouterLink } from 'vue-router'
 const { to, activeClass } = defineProps<{
   to?: string
   activeClass?: string

@@ -1,5 +1,8 @@
-import type { Comment } from './comment'
+import { z } from 'zod'
 
+// -----
+// types
+// -----
 export enum PostStatus {
   Draft = 'draft',
   Published = 'published',
@@ -21,10 +24,58 @@ export interface SimplePost {
   banner?: string
 }
 
+export interface Reply {
+  id: string
+  commentId: string
+  content: string
+}
+
+export interface Comment {
+  id: string
+  content: string
+  replies?: Array<Reply>
+}
+
 export interface Post extends SimplePost {
   comments: Array<Comment>
 }
 
+// -------
+// schemas
+// -------
+export const ReplySchema = z.object({
+  id: z.string(),
+  commentId: z.string(),
+  content: z.string(),
+})
+
+export const CommentSchema = z.object({
+  id: z.string(),
+  content: z.string(),
+  replies: z.array(ReplySchema).optional(),
+})
+
+export const SimplePostSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  description: z.string().optional(),
+  content: z.string(),
+  created: z.date(),
+  updated: z.date(),
+  status: z.nativeEnum(PostStatus),
+  views: z.number(),
+  likes: z.number(),
+  category: z.string(),
+  banner: z.string().optional(),
+})
+
+export const PostSchema = SimplePostSchema.extend({
+  comments: z.array(CommentSchema),
+})
+
+// ----------
+// mock datas
+// ----------
 export const mockPosts: SimplePost[] = [
   {
     id: 'post-001',
@@ -59,7 +110,7 @@ export const mockPosts: SimplePost[] = [
     content: '...详细内容...',
     created: new Date('2023-04-05'),
     updated: new Date('2023-04-07'),
-    banner: '/images/rust-logo.png',
+    banner: 'natsu.jpg',
     status: PostStatus.Published,
     views: 842,
     likes: 45,

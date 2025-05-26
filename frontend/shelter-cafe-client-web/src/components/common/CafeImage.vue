@@ -37,7 +37,7 @@ const isLoading = ref(true)
   >
     <component
       :is="currentComponent"
-      :class="imgClass"
+      v-bind="$attrs"
       :src="src"
       @load="isLoading = false"
       @error="onerror"

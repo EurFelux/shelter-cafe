@@ -1,0 +1,14 @@
+{
+  "home": {
+    "name": "Phantom",
+    "motto": "I might be a pink-haired loli, but it's unlikely that I'm a pink-haired loli.",
+    "motto-from": "Phantom"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About"
+  },
+  "search": {
+    "placeholder": "Search"
+  }
+}

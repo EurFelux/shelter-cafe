@@ -21,22 +21,24 @@ const i18n = createI18n({
   messages: {},
 })
 
-// 加载首选语言
-for (const lang of preferedLanguages.value) {
-  locale = lang
-  const supportedLang = SUPPORTED_LOCALES.find((item) => item.id === lang)
-  if (supportedLang) {
-    locale = supportedLang.id
-    await loadLocaleMessages(supportedLang.id)
-    setI18nLanguage(supportedLang.id)
-    break
+export const loadPreferedLang = async () => {
+  // 加载首选语言
+  for (const lang of preferedLanguages.value) {
+    locale = lang
+    const supportedLang = SUPPORTED_LOCALES.find((item) => item.id === lang)
+    if (supportedLang) {
+      locale = supportedLang.id
+      await loadLocaleMessages(supportedLang.id)
+      setI18nLanguage(supportedLang.id)
+      break
+    }
   }
-}
 
-// fallback时加载
-if (locale === '') {
-  await loadLocaleMessages(fallbackLocale)
-  setI18nLanguage(locale as SupportedLanguage)
+  // fallback时加载
+  if (locale === '') {
+    await loadLocaleMessages(fallbackLocale)
+    setI18nLanguage(locale as SupportedLanguage)
+  }
 }
 
 export default i18n
@@ -57,8 +59,9 @@ export async function loadLocaleMessages(localeId: SupportedLanguage) {
     return
   }
 
-  const messages = await import(`@/assets/locales/${localeId}.json`)
-  i18n.global.setLocaleMessage(localeId, messages.default)
+  const response = await fetch(`/locales/${localeId}.json`)
+  const data = await response.json()
+  i18n.global.setLocaleMessage(localeId, data)
 
   return nextTick()
 }

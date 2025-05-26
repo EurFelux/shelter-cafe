@@ -19,7 +19,7 @@ const onSelectLocale = (lang: SupportedLanguage) => {
       <IconI18n class="text-base-content h-6 w-6"></IconI18n>
       <IconDropdown class="h-4 w-4"></IconDropdown>
     </div>
-    <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+    <ul tabindex="0" class="dropdown-content menu bg-base-200 rounded-box z-1 w-52 p-2 shadow-sm">
       <li v-for="lang in SUPPORTED_LOCALES" :key="lang.id" @click="onSelectLocale(lang.id)">
         <a>{{ lang.name }}</a>
       </li>

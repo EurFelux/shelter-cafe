@@ -1,0 +1,14 @@
+{
+  "home": {
+    "name": "Phantom",
+    "motto": "我可能是一只粉毛萝莉，但我是一只粉毛萝莉不太可能。",
+    "motto-from": "Phantom"
+  },
+  "nav": {
+    "home": "首页",
+    "about": "关于"
+  },
+  "search": {
+    "placeholder": "搜索"
+  }
+}

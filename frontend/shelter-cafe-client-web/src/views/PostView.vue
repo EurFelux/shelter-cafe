@@ -3,10 +3,7 @@ import { useRoute } from 'vue-router'
 import { mockPost } from '@/datamodel/post'
 
 import CafeMarkdown from '@/components/common/CafeMarkdown.vue'
-import { md } from '@/utils/markdown'
 const route = useRoute()
-
-console.log(md.renderer.rules)
 </script>
 
 <template>
